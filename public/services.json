@@ -1,0 +1,56 @@
+[
+    {
+        "_id": 1,
+        "image": "https://imgcdn.zigwheels.ph/large/gallery/exterior/86/1609/yamaha-yzf-r15-slant-front-view-full-image-380761.jpg",
+        "title": "Yamaha R15 v3",
+        "description": "The total series of R15 is very popular around the world.",
+        "price": "475000",
+        "quantity": "12",
+        "supplierName": "Akram Khan"
+    },
+    {
+        "_id": 2,
+        "image": "https://imgcdn.zigwheels.ph/large/gallery/exterior/86/1609/yamaha-yzf-r15-slant-front-view-full-image-380761.jpg",
+        "title": "Yamaha R15 v3",
+        "description": "The total series of R15 is very popular around the world.",
+        "price": "475000",
+        "quantity": "12",
+        "supplierName": "Akram Khan"
+    },
+    {
+        "_id": 3,
+        "image": "https://imgcdn.zigwheels.ph/large/gallery/exterior/86/1609/yamaha-yzf-r15-slant-front-view-full-image-380761.jpg",
+        "title": "Yamaha R15 v3",
+        "description": "The total series of R15 is very popular around the world.",
+        "price": "475000",
+        "quantity": "12",
+        "supplierName": "Akram Khan"
+    },
+    {
+        "_id": 4,
+        "image": "https://www.puranbike.com/images/users/7621/1605515198_honda-x-blade-pearl%20black.jpg",
+        "title": "Honda X-Blade",
+        "description": "The total series of Honda is very popular around Bangladesh now.",
+        "price": "186900",
+        "quantity": "25",
+        "supplierName": "Jahid Hasan"
+    },
+    {
+        "_id": 5,
+        "image": "https://www.puranbike.com/images/users/7621/1605515198_honda-x-blade-pearl%20black.jpg",
+        "title": "Honda X-Blade",
+        "description": "The total series of Honda is very popular around Bangladesh now.",
+        "price": "186900",
+        "quantity": "25",
+        "supplierName": "Jahid Hasan"
+    },
+    {
+        "_id": 6,
+        "image": "https://www.puranbike.com/images/users/7621/1605515198_honda-x-blade-pearl%20black.jpg",
+        "title": "Honda X-Blade",
+        "description": "The total series of Honda is very popular around Bangladesh now.",
+        "price": "186900",
+        "quantity": "25",
+        "supplierName": "Jahid Hasan"
+    }
+]
