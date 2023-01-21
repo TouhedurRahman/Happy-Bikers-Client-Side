@@ -3,6 +3,7 @@ import { Button } from 'react-bootstrap';
 import useServices from '../../hooks/useServices';
 import Banner from '../Banner/Banner';
 import Service from '../Service/Service';
+import Shops from '../Shops/Shops';
 import "./Home.css";
 
 const Home = () => {
@@ -23,6 +24,14 @@ const Home = () => {
                     }
                 </div>
                 <Button>Show More</Button>
+            </div>
+
+            <div className='container item-container'>
+                <h1 className='pt-3'>Our Shops</h1>
+                <hr />
+                <div className='shops-container'>
+                    <Shops></Shops>
+                </div>
             </div>
         </div>
     );
