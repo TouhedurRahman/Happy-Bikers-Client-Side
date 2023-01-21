@@ -2,6 +2,7 @@ import React from 'react';
 import { Button } from 'react-bootstrap';
 import useServices from '../../hooks/useServices';
 import Banner from '../Banner/Banner';
+import Openion from '../Openion/Openion';
 import Service from '../Service/Service';
 import Shops from '../Shops/Shops';
 import "./Home.css";
@@ -31,6 +32,14 @@ const Home = () => {
                 <hr />
                 <div className='shops-container'>
                     <Shops></Shops>
+                </div>
+            </div>
+
+            <div className='container item-container'>
+                <h1 className='pt-3'>Your Openion</h1>
+                <hr />
+                <div className='openion-conainer'>
+                    <Openion></Openion>
                 </div>
             </div>
         </div>

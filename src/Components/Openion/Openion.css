@@ -1,0 +1,19 @@
+.openion-section {
+    display: flex;
+}
+
+.openion-img {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.openion-img img {
+    width: 80%;
+    height: 80%;
+}
+
+.half-width {
+    width: 50%;
+    margin: 10px auto;
+}
