@@ -1,9 +1,17 @@
 import React from 'react';
 import './Service.css';
 import { Button, Card } from 'react-bootstrap';
+import { useNavigate } from 'react-router-dom';
 
 const Service = ({ service }) => {
-    const { image, title, description, price, quantity, supplierName } = service;
+    const { _id, image, title, description, price, quantity, supplierName } = service;
+
+    const navigate = useNavigate();
+
+    const updateBtn = id => {
+        navigate(`/updateItem/${id}`);
+    }
+
     return (
         <div className='service-card'>
             <Card className='border border-1 mx-auto m-1 card rounded-3' style={{ width: '20rem' }}>
@@ -22,7 +30,7 @@ const Service = ({ service }) => {
                     <Card.Text>
                         Supplier Name: {supplierName}
                     </Card.Text>
-                    <Button variant="primary">Update</Button>
+                    <Button onClick={() => updateBtn(_id)} variant="primary">Update 📝</Button>
                 </Card.Body>
             </Card>
         </div>
