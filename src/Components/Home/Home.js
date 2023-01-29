@@ -18,7 +18,7 @@ const Home = () => {
                 <hr />
                 <div className='services-container'>
                     {
-                        services.map(service => <Service
+                        services.slice(0, 6).map(service => <Service
                             key={service._id}
                             service={service}
                         ></Service>)
