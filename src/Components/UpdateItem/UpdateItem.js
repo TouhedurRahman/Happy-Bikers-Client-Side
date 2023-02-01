@@ -38,7 +38,7 @@ const UpdateItem = () => {
 
         const deliveryQuantity = parseInt(event.target.delevered.value);
 
-        if (deliveryQuantity < 0 || count < deliveryQuantity) {
+        if (deliveryQuantity <= 0 || count < deliveryQuantity) {
             event.target.reset();
             alert("You might have mistaken!");
             return;
@@ -59,6 +59,23 @@ const UpdateItem = () => {
         } else {
             const updatedQuantity = count - 1;
             setCount(updatedQuantity);
+        }
+    };
+
+    const hadleRestock = event => {
+        event.preventDefault();
+
+        const restockQuantity = parseInt(event.target.restock.value);
+
+        if (restockQuantity <= 0) {
+            event.target.reset();
+            alert("You might have mistaken!");
+            return;
+        } else {
+            const updatedQuantity = parseInt(count) + restockQuantity;
+            setCount(updatedQuantity);
+            event.target.reset();
+            alert("Restock Successful");
         }
     };
 
@@ -127,11 +144,13 @@ const UpdateItem = () => {
                 <div className='product-restock m-3'>
                     <h1 className='pt-3 text-center'>Bikes Restock</h1>
                     <hr />
-                    <Form>
+
+                    {/* Bikes Restock */}
+                    <Form onSubmit={hadleRestock}>
                         <Form.Group className="mb-3">
                             <Form.Label>Bikes Restock</Form.Label>
                             <Form.Control className='text-center'
-                                name="delevered"
+                                name="restock"
                                 type="number"
                                 placeholder="Quantity"
                                 required
