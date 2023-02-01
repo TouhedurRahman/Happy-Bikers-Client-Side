@@ -1,0 +1,16 @@
+.service-card {
+    padding: 5%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    align-items: center;
+}
+
+@media only screen and (max-width:688px) {
+    .service-card {
+        display: grid;
+        grid-template-columns: repeat(1, 1fr);
+        grid-gap: 5px;
+        margin: 10px auto;
+    }
+}

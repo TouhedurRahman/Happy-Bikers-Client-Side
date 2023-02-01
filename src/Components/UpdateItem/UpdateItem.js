@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import { Card } from 'react-bootstrap';
+import './UpdateItem.css';
+import { Button, Card, Form } from 'react-bootstrap';
 import { useParams } from 'react-router-dom';
 
 const UpdateItem = () => {
@@ -39,6 +40,41 @@ const UpdateItem = () => {
                         </Card.Text>
                     </Card.Body>
                 </Card>
+            </div>
+            <div className='product-delivery m-3'>
+                <h1 className='pt-3 text-center'>Bikes Delivery</h1>
+                <hr />
+                <Form>
+                    <Form.Group className="mb-3">
+                        <Form.Label>Bike Delivery</Form.Label>
+                        <Form.Control
+                            name="delevered"
+                            type="number"
+                            placeholder="Enter no. of quantity"
+                            required
+                        />
+                        <Form.Text className="text-muted">
+                            ** You have {product.quantity} bikes available
+                        </Form.Text>
+                    </Form.Group>
+                    <div className='text-center'>
+                        <Button variant="primary" type="submit">
+                            Bulk Delivery
+                        </Button>
+                    </div>
+                </Form>
+                <div className='d-flex align-items-center'>
+                    <div style={{ height: '1px' }} className='bg-primary w-50'></div>
+                    <p className='mt-2 px-2'>Or</p>
+                    <div style={{ height: '1px' }} className='bg-primary w-50'></div>
+                </div>
+                <Form>
+                    <div className='text-center'>
+                        <Button variant="primary" type="submit">
+                            Singal Delivery
+                        </Button>
+                    </div>
+                </Form>
             </div>
         </div>
     );
