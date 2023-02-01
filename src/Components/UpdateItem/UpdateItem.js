@@ -6,6 +6,7 @@ import { useParams } from 'react-router-dom';
 const UpdateItem = () => {
     const { updateId } = useParams();
     const [product, setProduct] = useState({});
+    const [count, setCount] = useState([]);
 
     useEffect(() => {
         const url = '../services.json';
@@ -18,6 +19,32 @@ const UpdateItem = () => {
                 }
             });
     }, [updateId]);
+
+    useEffect(() => {
+        const url = '../services.json';
+        fetch(url)
+            .then(res => res.json())
+            .then(data => {
+                const filteredProduct = data.filter(product => product._id === parseInt(updateId));
+                if (filteredProduct.length) {
+                    const updatedCount = filteredProduct[0].quantity;
+                    setCount(updatedCount);
+                }
+            });
+    }, [updateId]);
+
+    const handleBulkDelivery = event => {
+        event.preventDefault();
+
+        const deliveryQuantity = parseInt(event.target.delevered.value);
+
+        if (deliveryQuantity < 0 || count < deliveryQuantity) {
+            alert("You might have mistaken!")
+        } else {
+            const updatedQuantity = count - deliveryQuantity;
+            setCount(updatedQuantity);
+        }
+    };
 
     return (
         <div>
@@ -34,7 +61,7 @@ const UpdateItem = () => {
                                 Current Price: {product.price}
                             </Card.Text>
                             <Card.Text>
-                                Available Stock: {product.quantity}
+                                Available Stock: {count}
                             </Card.Text>
                             <Card.Text>
                                 Supplier Name: {product.supplierName}
@@ -45,17 +72,19 @@ const UpdateItem = () => {
                 <div className='product-delivery m-3'>
                     <h1 className='pt-3 text-center'>Bikes Delivery</h1>
                     <hr />
-                    <Form>
+
+                    {/* Bulk Delivery */}
+                    <Form onSubmit={handleBulkDelivery}>
                         <Form.Group className="mb-3">
                             <Form.Label>Bikes Delivery</Form.Label>
-                            <Form.Control
+                            <Form.Control className='text-center'
                                 name="delevered"
                                 type="number"
-                                placeholder="Enter no. of quantity"
+                                placeholder="Quantity"
                                 required
                             />
                             <Form.Text className="text-muted">
-                                ** You have {product.quantity} bikes available
+                                ** You have {count} bikes available
                             </Form.Text>
                         </Form.Group>
                         <div className='text-center'>
@@ -72,7 +101,7 @@ const UpdateItem = () => {
                     <Form>
                         <div className='text-center'>
                             <Button variant="primary" type="submit">
-                                Singal Delivery
+                                Single Delivery
                             </Button>
                         </div>
                     </Form>
@@ -83,14 +112,14 @@ const UpdateItem = () => {
                     <Form>
                         <Form.Group className="mb-3">
                             <Form.Label>Bikes Restock</Form.Label>
-                            <Form.Control
+                            <Form.Control className='text-center'
                                 name="delevered"
                                 type="number"
-                                placeholder="Enter no. of quantity"
+                                placeholder="Quantity"
                                 required
                             />
                             <Form.Text className="text-muted">
-                                ** You have {product.quantity} bikes available
+                                ** You have {count} bikes available
                             </Form.Text>
                         </Form.Group>
                         <div className='text-center'>
@@ -101,11 +130,13 @@ const UpdateItem = () => {
                     </Form>
                 </div>
             </div>
-            <div className='text-center'>
+            <hr style={{ width: '20%' }} className='mx-auto'></hr>
+            <div className='text-center m-3'>
                 <Button variant="primary" type="submit">
                     Manage Stock
                 </Button>
             </div>
+            <hr style={{ width: '20%' }} className='mx-auto'></hr>
         </div>
     );
 };
