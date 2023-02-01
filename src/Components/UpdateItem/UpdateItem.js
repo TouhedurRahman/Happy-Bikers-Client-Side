@@ -39,9 +39,25 @@ const UpdateItem = () => {
         const deliveryQuantity = parseInt(event.target.delevered.value);
 
         if (deliveryQuantity < 0 || count < deliveryQuantity) {
-            alert("You might have mistaken!")
+            event.target.reset();
+            alert("You might have mistaken!");
+            return;
         } else {
             const updatedQuantity = count - deliveryQuantity;
+            setCount(updatedQuantity);
+            event.target.reset();
+            alert("Delivered Successful");
+        }
+    };
+
+    const handleSingleDelivery = event => {
+        event.preventDefault();
+
+        if (count <= 0) {
+            alert("You might have mistaken!");
+            return;
+        } else {
+            const updatedQuantity = count - 1;
             setCount(updatedQuantity);
         }
     };
@@ -98,7 +114,9 @@ const UpdateItem = () => {
                         <p className='mt-2 px-2'>Or</p>
                         <div style={{ height: '1px' }} className='bg-primary w-50'></div>
                     </div>
-                    <Form>
+
+                    {/* Single Delivery */}
+                    <Form onSubmit={handleSingleDelivery}>
                         <div className='text-center'>
                             <Button variant="primary" type="submit">
                                 Single Delivery
