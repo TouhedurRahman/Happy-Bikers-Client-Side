@@ -6,14 +6,14 @@
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     grid-gap: 10px;
-    padding: 10px 40px;
+    margin: 10px auto;
 }
 
 @media only screen and (max-width:688px) {
     .services-container {
         display: grid;
         grid-template-columns: repeat(1, 1fr);
-        grid-gap: 10px;
-        padding: 10px auto;
+        grid-gap: 5px;
+        margin: 10px auto;
     }
 }

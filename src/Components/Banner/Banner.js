@@ -4,7 +4,7 @@ import { Carousel, Container } from 'react-bootstrap';
 const Banner = () => {
     return (
         <div>
-            <Container fluid m-3>
+            <Container fluid>
                 <Carousel variant="dark">
                     <Carousel.Item>
                         <img
