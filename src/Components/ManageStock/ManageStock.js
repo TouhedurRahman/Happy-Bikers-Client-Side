@@ -8,6 +8,21 @@ const ManageStock = () => {
     const [manages, setManages] = useServices();
     const navigate = useNavigate();
 
+    const deleteBtn = id => {
+        const confirmDelation = window.confirm('Are you sure you want to delete?');
+        if (confirmDelation) {
+            const url = '../services.json';
+            fetch(url)
+                .then(res => res.json())
+                .then(data => {
+                    const remaining = manages.filter(product => product._id !== id);
+                    setManages(remaining);
+                });
+        } else {
+            return;
+        }
+    }
+
     const updateBtn = id => {
         navigate(`/updateItem/${id}`);
     }
@@ -43,7 +58,7 @@ const ManageStock = () => {
                                     <td className="hide-column">{manage.supplierName}</td>
                                     <td>{manage.quantity}</td>
                                     <td>
-                                        <Button className="d-flex align-items-center mx-auto">Delete</Button>
+                                        <Button onClick={() => deleteBtn(manage._id)} className="d-flex align-items-center mx-auto">Delete</Button>
                                     </td>
                                     <td>
                                         <Button onClick={() => updateBtn(manage._id)} className="d-flex align-items-center mx-auto">Update</Button>
