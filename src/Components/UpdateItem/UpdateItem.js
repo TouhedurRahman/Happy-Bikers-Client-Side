@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import './UpdateItem.css';
 import { Button, Card, Form } from 'react-bootstrap';
-import { useParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 
 const UpdateItem = () => {
     const { updateId } = useParams();
@@ -46,7 +46,7 @@ const UpdateItem = () => {
             const updatedQuantity = count - deliveryQuantity;
             setCount(updatedQuantity);
             event.target.reset();
-            alert("Delivered Successful");
+            alert("Successfully Delivered");
         }
     };
 
@@ -169,9 +169,11 @@ const UpdateItem = () => {
             </div>
             <hr style={{ width: '20%' }} className='mx-auto'></hr>
             <div className='text-center m-3'>
-                <Button variant="primary" type="submit">
-                    Manage Stock
-                </Button>
+                <Link to='/manage-stock'>
+                    <Button variant="primary" type="submit">
+                        Manage Stock
+                    </Button>
+                </Link>
             </div>
             <hr style={{ width: '20%' }} className='mx-auto'></hr>
         </div>

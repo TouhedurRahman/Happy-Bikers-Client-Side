@@ -1,5 +1,6 @@
 import React from 'react';
 import { Button } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
 import useServices from '../../hooks/useServices';
 import Banner from '../Banner/Banner';
 import Openion from '../Openion/Openion';
@@ -24,7 +25,9 @@ const Home = () => {
                         ></Service>)
                     }
                 </div>
-                <Button>Show More</Button>
+                <Link to='/manage-stock'>
+                    <Button>Manage Stock</Button>
+                </Link>
             </div>
 
             <div className='container item-container'>
