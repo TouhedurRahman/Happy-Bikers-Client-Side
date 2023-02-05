@@ -11,7 +11,7 @@ const ManageStock = () => {
     const navigate = useNavigate();
 
     const deleteBtn = id => {
-        const confirmDelation = window.confirm('Are you to delete?');
+        const confirmDelation = window.confirm('Are you sure to delete?');
         if (confirmDelation) {
             const url = '../services.json';
             fetch(url)
@@ -59,11 +59,11 @@ const ManageStock = () => {
                                     <td className="hide-column" style={{ paddingTop: "1.25rem" }}>৳ {manage.price}/-</td>
                                     <td className="hide-column" style={{ paddingTop: "1.25rem" }}>{manage.supplierName}</td>
                                     <td style={{ paddingTop: "1.25rem" }}>{manage.quantity}</td>
-                                    <td onClick={() => deleteBtn(manage._id)}>
-                                        <FontAwesomeIcon style={{ color: "#ff0000b8", height: "2rem", width: "2rem", paddingTop: "0.5rem", cursor: "pointer" }} icon={faTrash} />
+                                    <td>
+                                        <FontAwesomeIcon onClick={() => deleteBtn(manage._id)} style={{ color: "#ff0000b8", height: "2rem", width: "2rem", paddingTop: "0.5rem", cursor: "pointer" }} icon={faTrash} />
                                     </td>
-                                    <td onClick={() => updateBtn(manage._id)}>
-                                        <FontAwesomeIcon style={{ color: "#1a8000ad", height: "2rem", width: "2rem", paddingTop: "0.5rem", cursor: "pointer" }} icon={faStickyNote} />
+                                    <td>
+                                        <FontAwesomeIcon onClick={() => updateBtn(manage._id)} style={{ color: "#1a8000ad", height: "2rem", width: "2rem", paddingTop: "0.5rem", cursor: "pointer" }} icon={faStickyNote} />
                                     </td>
                                 </tr>
                             )
