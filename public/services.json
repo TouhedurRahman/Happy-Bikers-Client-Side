@@ -15,7 +15,7 @@
         "description": "The total series of R15 is very popular around the world.",
         "price": "475000",
         "quantity": "12",
-        "supplierName": "Akram Khan"
+        "supplierName": "Ashraf Khan"
     },
     {
         "_id": 3,
@@ -24,7 +24,7 @@
         "description": "The total series of R15 is very popular around the world.",
         "price": "475000",
         "quantity": "12",
-        "supplierName": "Akram Khan"
+        "supplierName": "Rahim Uddin"
     },
     {
         "_id": 4,
@@ -33,7 +33,7 @@
         "description": "The total series of Honda is very popular around Bangladesh now.",
         "price": "186900",
         "quantity": "25",
-        "supplierName": "Jahid Hasan"
+        "supplierName": "Karim Uddin"
     },
     {
         "_id": 5,
@@ -42,7 +42,7 @@
         "description": "The total series of Honda is very popular around Bangladesh now.",
         "price": "186900",
         "quantity": "25",
-        "supplierName": "Jahid Hasan"
+        "supplierName": "Kamal Hossen"
     },
     {
         "_id": 6,
@@ -51,6 +51,6 @@
         "description": "The total series of Honda is very popular around Bangladesh now.",
         "price": "186900",
         "quantity": "25",
-        "supplierName": "Jahid Hasan"
+        "supplierName": "Rakib Hasan"
     }
 ]

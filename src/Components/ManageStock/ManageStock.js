@@ -1,4 +1,6 @@
 import React from 'react';
+import { faStickyNote, faTrash } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Button, Table } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
 import useServices from '../../hooks/useServices';
@@ -9,7 +11,7 @@ const ManageStock = () => {
     const navigate = useNavigate();
 
     const deleteBtn = id => {
-        const confirmDelation = window.confirm('Are you sure you want to delete?');
+        const confirmDelation = window.confirm('Are you to delete?');
         if (confirmDelation) {
             const url = '../services.json';
             fetch(url)
@@ -32,9 +34,9 @@ const ManageStock = () => {
             <div className='m-3'>
                 <h1 className='pt-3 text-center'>Manage Stock</h1>
                 <hr />
-                <Table striped bordered hover>
+                <Table striped hover>
                     <thead>
-                        <tr>
+                        <tr style={{ backgroundColor: "#0000ffa1", color: "white" }}>
                             <th>ID</th>
                             <th>Name</th>
                             <th>Image</th>
@@ -49,19 +51,19 @@ const ManageStock = () => {
                         {
                             manages.map(manage =>
                                 <tr key={manage._id}>
-                                    <td className="hide-column">{manage._id}</td>
-                                    <td>{manage.title}</td>
+                                    <td className="hide-column" style={{ paddingTop: "1.25rem" }}>{manage._id}</td>
+                                    <td style={{ paddingTop: "1.25rem" }}>{manage.title}</td>
                                     <td className="hide-column">
-                                        <img style={{ height: "50px", width: "50px" }} className='rounded' src={manage.image} alt="" />
+                                        <img style={{ height: "3rem", width: "3rem" }} className='rounded' src={manage.image} alt="" />
                                     </td>
-                                    <td className="hide-column">৳ {manage.price}/-</td>
-                                    <td className="hide-column">{manage.supplierName}</td>
-                                    <td>{manage.quantity}</td>
-                                    <td>
-                                        <Button onClick={() => deleteBtn(manage._id)} className="d-flex align-items-center mx-auto">Delete</Button>
+                                    <td className="hide-column" style={{ paddingTop: "1.25rem" }}>৳ {manage.price}/-</td>
+                                    <td className="hide-column" style={{ paddingTop: "1.25rem" }}>{manage.supplierName}</td>
+                                    <td style={{ paddingTop: "1.25rem" }}>{manage.quantity}</td>
+                                    <td onClick={() => deleteBtn(manage._id)}>
+                                        <FontAwesomeIcon style={{ color: "#ff0000b8", height: "2rem", width: "2rem", paddingTop: "0.5rem", cursor: "pointer" }} icon={faTrash} />
                                     </td>
-                                    <td>
-                                        <Button onClick={() => updateBtn(manage._id)} className="d-flex align-items-center mx-auto">Update</Button>
+                                    <td onClick={() => updateBtn(manage._id)}>
+                                        <FontAwesomeIcon style={{ color: "#1a8000ad", height: "2rem", width: "2rem", paddingTop: "0.5rem", cursor: "pointer" }} icon={faStickyNote} />
                                     </td>
                                 </tr>
                             )
