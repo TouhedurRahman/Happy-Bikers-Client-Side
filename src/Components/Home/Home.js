@@ -15,7 +15,7 @@ const Home = () => {
         <div>
             <Banner></Banner>
             <div className='container item-container'>
-                <h1 className='pt-3'>Your Dream Bikes</h1>
+                <h1 className='pt-3 text-center font-bold'>Your Dream Bikes</h1>
                 <hr />
                 <div className='services-container'>
                     {
@@ -25,13 +25,17 @@ const Home = () => {
                         ></Service>)
                     }
                 </div>
-                <Link to='/manage-stock'>
-                    <Button>Manage Stock</Button>
-                </Link>
+
+                <div className='text-center'>
+                    <Link to='/manage-stock'>
+                        <Button>Manage Stock</Button>
+                    </Link>
+                </div>
+                <hr style={{ width: '20%' }} className='mx-auto'></hr>
             </div>
 
             <div className='container item-container'>
-                <h1 className='pt-3'>Our Shops</h1>
+                <h1 className='pt-3 text-center font-bold'>Our Shops</h1>
                 <hr />
                 <div className='shops-container'>
                     <Shops></Shops>
@@ -39,7 +43,7 @@ const Home = () => {
             </div>
 
             <div className='container item-container'>
-                <h1 className='pt-3'>Your Openion</h1>
+                <h1 className='pt-3 text-center font-bold'>Your Openion</h1>
                 <hr />
                 <div className='openion-conainer'>
                     <Openion></Openion>

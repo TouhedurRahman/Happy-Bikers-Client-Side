@@ -2,7 +2,7 @@ import React from 'react';
 import { faStickyNote, faTrash } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Button, Table } from 'react-bootstrap';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import useServices from '../../hooks/useServices';
 import './ManageStock.css';
 
@@ -72,9 +72,11 @@ const ManageStock = () => {
                 </Table>
                 <hr style={{ width: '20%' }} className='mx-auto'></hr>
                 <div className='text-center m-3'>
-                    <Button variant="primary" type="submit">
-                        Add New Bikes
-                    </Button>
+                    <Link to='/add-new-bikes'>
+                        <Button variant="primary" type="submit">
+                            Add New Bikes
+                        </Button>
+                    </Link>
                 </div>
                 <hr style={{ width: '20%' }} className='mx-auto'></hr>
             </div>
