@@ -5,8 +5,8 @@ import Header from './Components/Header/Header';
 import Home from './Components/Home/Home';
 import ManageStock from './Components/ManageStock/ManageStock';
 import UpdateItem from './Components/UpdateItem/UpdateItem';
-import Login from './LoginRegistration/Login';
-import Registration from './LoginRegistration/Registration';
+import Login from './Components/LoginRegistration/Login';
+import Registration from './Components/LoginRegistration/Registration';
 
 function App() {
   return (
