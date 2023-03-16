@@ -1,6 +1,7 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { Link } from 'react-router-dom';
+import { AuthContext } from '../AuthProvider/AuthProvider';
 import './Registration.css';
 import SocialLogin from './SocialLogin';
 
@@ -9,6 +10,8 @@ const Registration = () => {
 
     const [passwordShown, setPasswordShown] = useState(false);
 
+    const { createUser } = useContext(AuthContext);
+
     const togglePassword = () => {
         setPasswordShown(!passwordShown);
     };
@@ -16,8 +19,16 @@ const Registration = () => {
     const handleRegistration = data => {
         if (data.userPassword === data.userConfirmPassword) {
             console.log(data);
+            createUser(data.userEmail, data.userPassword)
+                .then(result => {
+                    const user = result.user
+                    console.log(user);
+                    console.log('User created Successfull');
+                }).catch((error) => {
+                    console.log(error);
+                });
         } else {
-            console.log("P and CP must be same");
+            console.log("Password & Confirm Password must be same");
         }
     }
 
