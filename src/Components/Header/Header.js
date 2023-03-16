@@ -22,7 +22,7 @@ const Header = () => {
                                 </Nav>
                                 <Nav>
                                     <Nav.Link href="#deets">More</Nav.Link>
-                                    <Nav.Link href="#deets">Login</Nav.Link>
+                                    <Nav.Link href="/login">Login</Nav.Link>
                                 </Nav>
                             </Navbar.Collapse>
                         </Container>
