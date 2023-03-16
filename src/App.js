@@ -6,6 +6,7 @@ import Home from './Components/Home/Home';
 import ManageStock from './Components/ManageStock/ManageStock';
 import UpdateItem from './Components/UpdateItem/UpdateItem';
 import Login from './LoginRegistration/Login';
+import Registration from './LoginRegistration/Registration';
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
         <Route path='/manage-stock' element={<ManageStock />}></Route>
         <Route path='/add-new-bikes' element={<AddBikes />}></Route>
         <Route path='/login' element={<Login />}></Route>
+        <Route path='/register' element={<Registration />}></Route>
       </Routes>
     </div>
   );
