@@ -1,6 +1,6 @@
 import React, { useContext, useState } from 'react';
 import { useForm } from 'react-hook-form';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../AuthProvider/AuthProvider';
 import './Registration.css';
 import SocialLogin from './SocialLogin';
@@ -10,7 +10,9 @@ const Registration = () => {
 
     const [passwordShown, setPasswordShown] = useState(false);
 
-    const { createUser } = useContext(AuthContext);
+    const { createUser, updateUser } = useContext(AuthContext);
+
+    const navigate = useNavigate();
 
     const togglePassword = () => {
         setPasswordShown(!passwordShown);
@@ -24,6 +26,16 @@ const Registration = () => {
                     const user = result.user
                     console.log(user);
                     console.log('User created Successfull');
+                    const userInfo = {
+                        displayName: data.userName
+                    }
+                    updateUser(userInfo)
+                        .then(() => {
+                            navigate('/');
+                        })
+                        .then(error => {
+                            console.log(error);
+                        })
                 }).catch((error) => {
                     console.log(error);
                 });
