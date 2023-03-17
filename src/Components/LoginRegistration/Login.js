@@ -1,13 +1,19 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import './Login.css';
-import { Link } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import SocialLogin from './SocialLogin';
 import { useForm } from 'react-hook-form';
+import { AuthContext } from '../AuthProvider/AuthProvider';
 
 const Login = () => {
     const { register, handleSubmit } = useForm();
+    const { login } = useContext(AuthContext);
 
     const [passwordShown, setPasswordShown] = useState(false);
+
+    const location = useLocation();
+    const navigate = useNavigate();
+    const from = location.state?.from?.pathname || '/';
 
     const togglePassword = () => {
         setPasswordShown(!passwordShown);
@@ -15,6 +21,17 @@ const Login = () => {
 
     const handleLogin = data => {
         console.log(data);
+        login(data.userEmail, data.userPassword)
+            .then((result) => {
+                // Signed in 
+                const user = result.user;
+                // ...
+                console.log(user);
+                navigate(from, { replace: true });
+            })
+            .catch((error) => {
+                console.log(error);
+            });
     }
 
     return (
