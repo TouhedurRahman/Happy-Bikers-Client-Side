@@ -26,7 +26,7 @@ const Login = () => {
                 // Signed in 
                 const user = result.user;
                 // ...
-                console.log(user);
+                // console.log(user);
                 navigate(from, { replace: true });
             })
             .catch((error) => {
