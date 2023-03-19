@@ -4,12 +4,15 @@ import { Link, useLocation, useNavigate } from 'react-router-dom';
 import SocialLogin from './SocialLogin';
 import { useForm } from 'react-hook-form';
 import { AuthContext } from '../AuthProvider/AuthProvider';
+import { async } from '@firebase/util';
+import { toast } from 'react-hot-toast';
 
 const Login = () => {
     const { register, handleSubmit } = useForm();
-    const { login } = useContext(AuthContext);
+    const { login, resetPassword } = useContext(AuthContext);
 
     const [passwordShown, setPasswordShown] = useState(false);
+    const [enterUserEmail, setEnterUserEmail] = useState('');
 
     const location = useLocation();
     const navigate = useNavigate();
@@ -34,6 +37,27 @@ const Login = () => {
             });
     }
 
+    const handleEmailBlur = event => {
+        const email = event.target.value;
+        setEnterUserEmail(email);
+    }
+
+    const handleResetPassword = () => {
+        // console.log(enterUserEmail);
+        if (enterUserEmail) {
+            resetPassword(enterUserEmail)
+                .then(() => {
+                    toast.success("Email Sent!");
+                })
+                .then(err => {
+                    console.log(err);
+                })
+        }
+        else {
+            toast.error("Please Enter a valid Email");
+        }
+    }
+
     return (
         <div className='login-container mx-auto border border-success p-5 mt-5 mb-5 rounded-3'>
             <form onSubmit={handleSubmit(handleLogin)}>
@@ -44,6 +68,7 @@ const Login = () => {
                         className="form-control py-3 rounded"
                         placeholder="user@gmail.com"
                         {...register('userEmail', { required: true })}
+                        onBlur={handleEmailBlur}
                     />
                 </div>
                 <div className="mb-3">
@@ -70,7 +95,7 @@ const Login = () => {
             </form>
 
             <p className='text-center mt-4'>
-                Forget password?<button className='btn btn-link text-primary text-decoration-none pe-auto'>Reset Password</button>
+                Forget password?<button onClick={handleResetPassword} className='btn btn-link text-primary text-decoration-none pe-auto'>Reset Password</button>
             </p>
             <p className='text-center'>
                 New to Happy Bikers? <Link to="/register" className='text-primary text-decoration-none pe-auto'>Please Register</Link>

@@ -7,11 +7,13 @@ import ManageStock from './Components/ManageStock/ManageStock';
 import UpdateItem from './Components/UpdateItem/UpdateItem';
 import Login from './Components/LoginRegistration/Login';
 import Registration from './Components/LoginRegistration/Registration';
+import { Toaster } from 'react-hot-toast';
 
 function App() {
   return (
     <div className="App">
       <Header></Header>
+
       <Routes>
         <Route path='/' element={<Home />}></Route>
         <Route path='/home' element={<Home />}></Route>
@@ -21,6 +23,8 @@ function App() {
         <Route path='/login' element={<Login />}></Route>
         <Route path='/register' element={<Registration />}></Route>
       </Routes>
+
+      <Toaster />
     </div>
   );
 }

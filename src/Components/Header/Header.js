@@ -2,7 +2,7 @@ import React, { useContext } from 'react';
 import { Container, Nav, Navbar } from 'react-bootstrap';
 import { AuthContext } from '../AuthProvider/AuthProvider';
 import CustomLink from '../CustomLink/CustomLink';
-import { BiUserCircle } from "react-icons/bi";
+import { BiUser } from "react-icons/bi";
 import "./Header.css";
 
 const Header = () => {
@@ -32,14 +32,25 @@ const Header = () => {
                                     <Nav.Link as={CustomLink} to="/about">About Us</Nav.Link>
                                 </Nav>
                                 <Nav>
-                                    {/* <Nav.Link href="#deets">More</Nav.Link> */}
                                     {
                                         user?.uid
                                         &&
-                                        <span className='my-auto' style={{ color: "#382D72", marginRight: "20px" }}>
-                                            <BiUserCircle></BiUserCircle>
+                                        <span
+                                            className='my-auto d-flex justify-between'
+                                            style={{ color: "#382D72", marginRight: "20px", cursor: "grabbing" }}
+                                        >
+                                            <BiUser
+                                                className='my-auto'
+                                                style={{ height: "25px", width: "25px" }}
+                                            ></BiUser>
                                             {
-                                                user?.uid && user.displayName
+                                                user?.uid
+                                                &&
+                                                <Nav.Link
+                                                    style={{ color: "#382D72", cursor: "grabbing" }}
+                                                >
+                                                    {user?.displayName}
+                                                </Nav.Link>
                                             }
                                         </span>
                                     }
@@ -47,11 +58,17 @@ const Header = () => {
                                     {
                                         user?.uid
                                             ?
-                                            <Nav.Link as={CustomLink} onClick={handleLogout}>
+                                            <Nav.Link
+                                                as={CustomLink}
+                                                onClick={handleLogout}
+                                            >
                                                 Logout
                                             </Nav.Link>
                                             :
-                                            <Nav.Link as={CustomLink} to='/login'>
+                                            <Nav.Link
+                                                as={CustomLink}
+                                                to='/login'
+                                            >
                                                 Login
                                             </Nav.Link>
                                     }
