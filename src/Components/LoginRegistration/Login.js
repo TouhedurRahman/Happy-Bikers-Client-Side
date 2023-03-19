@@ -4,7 +4,6 @@ import { Link, useLocation, useNavigate } from 'react-router-dom';
 import SocialLogin from './SocialLogin';
 import { useForm } from 'react-hook-form';
 import { AuthContext } from '../AuthProvider/AuthProvider';
-import { async } from '@firebase/util';
 import { toast } from 'react-hot-toast';
 
 const Login = () => {
@@ -31,6 +30,7 @@ const Login = () => {
                 // ...
                 // console.log(user);
                 navigate(from, { replace: true });
+                toast.success("Login Successful!");
             })
             .catch((error) => {
                 console.log(error);

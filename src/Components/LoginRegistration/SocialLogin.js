@@ -1,6 +1,30 @@
+import { getAuth, GoogleAuthProvider, signInWithPopup } from 'firebase/auth';
 import React from 'react';
+import { toast } from 'react-hot-toast';
+import { useLocation, useNavigate } from 'react-router-dom';
+import app from '../../Firebase/firebase.config';
+
+const auth = getAuth(app);
 
 const SocialLogin = () => {
+    const provider = new GoogleAuthProvider();
+
+    const location = useLocation();
+    const navigate = useNavigate();
+
+    const from = location.state?.from?.pathname || '/';
+
+    const handleGoogleSignIn = () => {
+        signInWithPopup(auth, provider)
+            .then(result => {
+                const user = result.user;
+                // console.log(user);
+                navigate(from, { replace: true });
+                toast.success("Login Successful!");
+            })
+            .catch(err => console.log(err));
+    }
+
     return (
         <div>
             <div className='d-flex align-items-center'>
@@ -19,6 +43,7 @@ const SocialLogin = () => {
                     <span
                         style={{ fontSize: "16px", fontWeight: "900" }}
                         className='px-2'
+                        onClick={handleGoogleSignIn}
                     >
                         Continue With GOOGLE
                     </span>
