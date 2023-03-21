@@ -9,28 +9,17 @@ const UpdateItem = () => {
     const [count, setCount] = useState([]);
 
     useEffect(() => {
-        const url = '../services.json';
+        const url = `http://localhost:5000/bikes/${updateId}`;
         fetch(url)
             .then(res => res.json())
-            .then(data => {
-                const filteredProduct = data.filter(product => product._id === parseInt(updateId));
-                if (filteredProduct.length) {
-                    setProduct(filteredProduct[0]);
-                }
-            });
+            .then(data => setProduct(data));
     }, [updateId]);
 
     useEffect(() => {
-        const url = '../services.json';
+        const url = `http://localhost:5000/bikes/${updateId}`;
         fetch(url)
             .then(res => res.json())
-            .then(data => {
-                const filteredProduct = data.filter(product => product._id === parseInt(updateId));
-                if (filteredProduct.length) {
-                    const updatedCount = filteredProduct[0].quantity;
-                    setCount(updatedCount);
-                }
-            });
+            .then(data => setCount(data.quantity));
     }, [updateId]);
 
     const handleBulkDelivery = event => {
