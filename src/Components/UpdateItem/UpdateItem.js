@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import './UpdateItem.css';
 import { Button, Card, Form } from 'react-bootstrap';
 import { Link, useParams } from 'react-router-dom';
+import { toast } from 'react-hot-toast';
 
 const UpdateItem = () => {
     const { updateId } = useParams();
@@ -9,14 +10,14 @@ const UpdateItem = () => {
     const [count, setCount] = useState([]);
 
     useEffect(() => {
-        const url = `http://localhost:5000/bikes/${updateId}`;
+        const url = `http://localhost:5000/updateItem/${updateId}`;
         fetch(url)
             .then(res => res.json())
             .then(data => setProduct(data));
     }, [updateId]);
 
     useEffect(() => {
-        const url = `http://localhost:5000/bikes/${updateId}`;
+        const url = `http://localhost:5000/updateItem/${updateId}`;
         fetch(url)
             .then(res => res.json())
             .then(data => setCount(data.quantity));
@@ -27,15 +28,28 @@ const UpdateItem = () => {
 
         const deliveryQuantity = parseInt(event.target.delevered.value);
 
-        if (deliveryQuantity <= 0 || count < deliveryQuantity) {
-            event.target.reset();
-            alert("You might have mistaken!");
+        if (deliveryQuantity <= 0 || count <= deliveryQuantity) {
+            toast.error("You might have mistaken!");
             return;
         } else {
             const updatedQuantity = count - deliveryQuantity;
             setCount(updatedQuantity);
-            event.target.reset();
-            alert("Successfully Delivered");
+
+            const updatedBikeInfo = { updatedQuantity };
+
+            const url = `http://localhost:5000/updateItem/${updateId}`;
+            fetch(url, {
+                method: 'PUT',
+                headers: {
+                    'content-type': 'application/json'
+                },
+                body: JSON.stringify(updatedBikeInfo),
+            })
+                .then(res => res.json())
+                .then(data => {
+                    toast.success(`Successfully Delivered ${deliveryQuantity} bikes`);
+                    event.target.reset();
+                })
         }
     };
 
