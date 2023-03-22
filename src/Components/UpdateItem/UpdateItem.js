@@ -87,14 +87,27 @@ const UpdateItem = () => {
         const restockQuantity = parseInt(event.target.restock.value);
 
         if (restockQuantity <= 0) {
-            event.target.reset();
-            alert("You might have mistaken!");
+            toast.error("You might have mistaken!");
             return;
         } else {
             const updatedQuantity = parseInt(count) + restockQuantity;
             setCount(updatedQuantity);
-            event.target.reset();
-            alert("Restock Successful");
+
+            const updatedBikeInfo = { updatedQuantity };
+
+            const url = `http://localhost:5000/updateItem/${updateId}`;
+            fetch(url, {
+                method: 'PUT',
+                headers: {
+                    'content-type': 'application/json'
+                },
+                body: JSON.stringify(updatedBikeInfo),
+            })
+                .then(res => res.json())
+                .then(data => {
+                    toast.success(`Successfully Restock ${restockQuantity} ${(restockQuantity > 1) ? 'bikes' : 'bike'}!`);
+                    event.target.reset();
+                })
         }
     };
 
