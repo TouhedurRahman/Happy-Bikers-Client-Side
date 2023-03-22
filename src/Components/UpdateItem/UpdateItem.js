@@ -57,11 +57,27 @@ const UpdateItem = () => {
         event.preventDefault();
 
         if (count <= 0) {
-            alert("You might have mistaken!");
+            toast.error("You do not have any bike to deliver!");
             return;
         } else {
             const updatedQuantity = count - 1;
             setCount(updatedQuantity);
+
+            const updatedBikeInfo = { updatedQuantity };
+
+            const url = `http://localhost:5000/updateItem/${updateId}`;
+            fetch(url, {
+                method: 'PUT',
+                headers: {
+                    'content-type': 'application/json'
+                },
+                body: JSON.stringify(updatedBikeInfo),
+            })
+                .then(res => res.json())
+                .then(data => {
+                    toast.success('Successfully Delivered!');
+                    event.target.reset();
+                })
         }
     };
 
