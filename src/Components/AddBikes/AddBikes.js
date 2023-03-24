@@ -1,10 +1,33 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { useForm } from 'react-hook-form';
+import { toast } from 'react-hot-toast';
+import { AuthContext } from '../AuthProvider/AuthProvider';
 
 const AddBikes = () => {
+    const { user } = useContext(AuthContext);
     const { register, handleSubmit } = useForm();
-    const addNewBikes = data => {
-        console.log(data);
+    const addNewBikes = (data, event) => {
+        const form = event.target;
+        form.reset();
+
+        const url = `http://localhost:5000/bikes`;
+
+        fetch(url, {
+            method: 'POST',
+            headers: {
+                'content-type': 'application/json'
+            },
+            body: JSON.stringify(data)
+        })
+            .then(res => res.json())
+            .then(data => {
+                console.log(data);
+                if (data._id) {
+                    toast.success('Bikes added successfully!');
+                } else {
+                    toast.error('Somethig went wrong. Please try again.');
+                }
+            })
     }
 
     return (
@@ -25,7 +48,7 @@ const AddBikes = () => {
                         type="text"
                         className="form-control"
                         placeholder="Bike Name"
-                        {...register('bikeName', { required: true })}
+                        {...register('title', { required: true })}
                     />
                 </div>
                 <div className="form-group mt-3 mb-3">
@@ -41,7 +64,7 @@ const AddBikes = () => {
                         type="number"
                         className="form-control"
                         placeholder="Current Price"
-                        {...register('currentPrice', { required: true, min: 20 })}
+                        {...register('price', { required: true, min: 20 })}
                     />
                 </div>
                 <div className="form-group mt-3 mb-3">
@@ -49,7 +72,7 @@ const AddBikes = () => {
                         type="number"
                         className="form-control"
                         placeholder="Available Stock"
-                        {...register('inStock', { required: true, min: 1 })}
+                        {...register('quantity', { required: true, min: 1 })}
                     />
                 </div>
                 <div className="form-group mt-3 mb-3">
@@ -65,19 +88,20 @@ const AddBikes = () => {
                         type="text"
                         className="form-control"
                         placeholder="Image URL"
-                        {...register('imgUrl', { required: true })}
+                        {...register('image', { required: true })}
                     />
                 </div>
                 <div className="form-group mt-3 mb-3">
                     <input
                         type="email"
                         className="form-control"
-                        placeholder="Enter Email"
+                        value={user ? user?.email : 'emailnai@gmail.com'}
+                        readOnly
                         {...register('userEmail', { required: true })}
                     />
                 </div>
                 <div className='text-center mt-3 mb-3'>
-                    <button type="submit" className="btn btn-primary">Submit</button>
+                    <button type="submit" className="btn btn-primary w-100">Submit</button>
                 </div>
             </form>
         </div>
