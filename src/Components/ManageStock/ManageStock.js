@@ -5,6 +5,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { Button, Table } from 'react-bootstrap';
 import { FaTrashAlt } from 'react-icons/fa';
 import { TfiWrite } from 'react-icons/tfi';
+import { toast } from 'react-hot-toast';
 
 const ManageStock = () => {
     const [manages, setManages] = useServices();
@@ -22,6 +23,7 @@ const ManageStock = () => {
                     if (data.deletedCount > 0) {
                         const remaining = manages.filter(product => product._id !== id);
                         setManages(remaining);
+                        toast.success("Successfully deleted!");
                     }
                 });
         } else {
