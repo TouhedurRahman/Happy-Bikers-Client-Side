@@ -1,10 +1,10 @@
 import React from 'react';
-import { faStickyNote, faTrash } from '@fortawesome/free-solid-svg-icons';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { Button, Table } from 'react-bootstrap';
-import { Link, useNavigate } from 'react-router-dom';
-import useServices from '../../hooks/useServices';
 import './ManageStock.css';
+import useServices from '../../hooks/useServices';
+import { Link, useNavigate } from 'react-router-dom';
+import { Button, Table } from 'react-bootstrap';
+import { FaTrashAlt } from 'react-icons/fa';
+import { TfiWrite } from 'react-icons/tfi';
 
 const ManageStock = () => {
     const [manages, setManages] = useServices();
@@ -13,12 +13,16 @@ const ManageStock = () => {
     const deleteBtn = id => {
         const confirmDelation = window.confirm('Are you sure to delete?');
         if (confirmDelation) {
-            const url = '../services.json';
-            fetch(url)
+            const url = `http://localhost:5000/deleteItem/${id}`;
+            fetch(url, {
+                method: 'DELETE',
+            })
                 .then(res => res.json())
                 .then(data => {
-                    const remaining = manages.filter(product => product._id !== id);
-                    setManages(remaining);
+                    if (data.deletedCount > 0) {
+                        const remaining = manages.filter(product => product._id !== id);
+                        setManages(remaining);
+                    }
                 });
         } else {
             return;
@@ -34,36 +38,36 @@ const ManageStock = () => {
             <div className='m-3'>
                 <h1 className='pt-3 text-center'>Manage Stock</h1>
                 <hr />
-                <Table striped hover>
+                <Table responsive striped hover style={{ whiteSpace: "nowrap" }}>
                     <thead>
                         <tr style={{ backgroundColor: "#0000ffa1", color: "white" }}>
-                            <th>ID</th>
+                            <th className='text-center'>Sl. No.</th>
                             <th>Name</th>
-                            <th>Image</th>
-                            <th>Price</th>
+                            <th className='text-center'>Image</th>
+                            <th className='text-end'>Price (৳)/-</th>
+                            <th className='text-center'>Quantity</th>
                             <th>Supplier Name</th>
-                            <th>Quantity</th>
-                            <th>Delete</th>
-                            <th>Update</th>
+                            <th className='text-center'>Delete</th>
+                            <th className='text-center'>Update</th>
                         </tr>
                     </thead>
                     <tbody>
                         {
-                            manages.map(manage =>
+                            manages.map((manage, i) =>
                                 <tr key={manage._id}>
-                                    <td className="hide-column" style={{ paddingTop: "1.25rem" }}>{manage._id}</td>
+                                    <td className="hide-column text-center" style={{ paddingTop: "1.25rem" }}>{i + 1}</td>
                                     <td style={{ paddingTop: "1.25rem" }}>{manage.title}</td>
-                                    <td className="hide-column">
+                                    <td className="hide-column text-center">
                                         <img style={{ height: "3rem", width: "3rem" }} className='rounded' src={manage.image} alt="" />
                                     </td>
-                                    <td className="hide-column" style={{ paddingTop: "1.25rem" }}>৳ {manage.price}/-</td>
+                                    <td className="hide-column text-end" style={{ paddingTop: "1.25rem" }}>৳ {manage.price}/-</td>
+                                    <td className='text-center' style={{ paddingTop: "1.25rem" }}>{manage.quantity}</td>
                                     <td className="hide-column" style={{ paddingTop: "1.25rem" }}>{manage.supplierName}</td>
-                                    <td style={{ paddingTop: "1.25rem" }}>{manage.quantity}</td>
-                                    <td>
-                                        <FontAwesomeIcon onClick={() => deleteBtn(manage._id)} style={{ color: "#ff0000b8", height: "2rem", width: "2rem", paddingTop: "0.5rem", cursor: "pointer" }} icon={faTrash} />
+                                    <td className='text-center'>
+                                        <FaTrashAlt onClick={() => deleteBtn(manage._id)} style={{ color: "#ff0000b8", height: "3rem", width: "1.5rem", cursor: "pointer" }} />
                                     </td>
-                                    <td>
-                                        <FontAwesomeIcon onClick={() => updateBtn(manage._id)} style={{ color: "#1a8000ad", height: "2rem", width: "2rem", paddingTop: "0.5rem", cursor: "pointer" }} icon={faStickyNote} />
+                                    <td className='text-center'>
+                                        <TfiWrite onClick={() => updateBtn(manage._id)} style={{ color: "#1a8000ad", height: "3rem", width: "1.5rem", cursor: "pointer" }} />
                                     </td>
                                 </tr>
                             )
