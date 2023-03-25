@@ -38,49 +38,51 @@ const Header = () => {
                                         <>
                                             <Nav.Link as={CustomLink} to="/add-new-bikes">Add Bikes</Nav.Link>
                                             <Nav.Link as={CustomLink} to="/manage-stock">Manage Bikes</Nav.Link>
-                                            <Nav.Link as={CustomLink} to="/my-items">My Items</Nav.Link>
+                                            <Nav.Link as={CustomLink} to="/my-items" className='me-5'>My Items</Nav.Link>
                                         </>
                                     }
-                                    {
-                                        user?.uid
-                                        &&
-                                        <span
-                                            className='my-auto d-flex justify-between'
-                                            style={{ color: "#382D72", marginRight: "20px", cursor: "grabbing" }}
-                                        >
-                                            <BiUser
-                                                className='my-auto ms-5'
-                                                style={{ height: "25px", width: "25px" }}
-                                            ></BiUser>
-                                            {
-                                                user?.uid
-                                                &&
-                                                <Nav.Link
-                                                    style={{ color: "#382D72", cursor: "grabbing" }}
-                                                >
-                                                    {user?.displayName}
-                                                </Nav.Link>
-                                            }
-                                        </span>
-                                    }
+                                    <div className='d-flex justify-content-around'>
+                                        {
+                                            user?.uid
+                                            &&
+                                            <span
+                                                className='my-auto d-flex justify-between'
+                                                style={{ color: "#382D72", cursor: "grabbing" }}
+                                            >
+                                                <BiUser
+                                                    className='my-auto'
+                                                    style={{ height: "25px", width: "25px" }}
+                                                ></BiUser>
+                                                {
+                                                    user?.uid
+                                                    &&
+                                                    <Nav.Link
+                                                        style={{ color: "#382D72", cursor: "grabbing" }}
+                                                    >
+                                                        {user?.displayName}
+                                                    </Nav.Link>
+                                                }
+                                            </span>
+                                        }
 
-                                    {
-                                        user?.uid
-                                            ?
-                                            <Nav.Link
-                                                as={CustomLink}
-                                                onClick={handleLogout}
-                                            >
-                                                Logout <FiLogOut />
-                                            </Nav.Link>
-                                            :
-                                            <Nav.Link
-                                                as={CustomLink}
-                                                to='/login'
-                                            >
-                                                Login
-                                            </Nav.Link>
-                                    }
+                                        {
+                                            user?.uid
+                                                ?
+                                                <Nav.Link
+                                                    as={CustomLink}
+                                                    onClick={handleLogout}
+                                                >
+                                                    Logout <FiLogOut />
+                                                </Nav.Link>
+                                                :
+                                                <Nav.Link
+                                                    as={CustomLink}
+                                                    to='/login'
+                                                >
+                                                    Login
+                                                </Nav.Link>
+                                        }
+                                    </div>
                                 </Nav>
                             </Navbar.Collapse>
                         </Container>
