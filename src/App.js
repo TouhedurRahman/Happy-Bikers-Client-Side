@@ -29,7 +29,11 @@ function App() {
 
         <Route
           path='/updateItem/:updateId'
-          element={<UpdateItem />}
+          element={
+            <PrivateRoute>
+              <UpdateItem />
+            </PrivateRoute>
+          }
         ></Route>
 
         <Route
