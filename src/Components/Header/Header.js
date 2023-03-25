@@ -3,6 +3,7 @@ import { Container, Nav, Navbar } from 'react-bootstrap';
 import { AuthContext } from '../AuthProvider/AuthProvider';
 import CustomLink from '../CustomLink/CustomLink';
 import { BiUser } from "react-icons/bi";
+import { FiLogOut } from "react-icons/fi";
 import "./Header.css";
 
 const Header = () => {
@@ -27,13 +28,13 @@ const Header = () => {
                             <Navbar.Collapse id="responsive-navbar-nav">
                                 <Nav className="me-auto">
                                     <Nav.Link as={CustomLink} to="/home">Home</Nav.Link>
-                                    <Nav.Link as={CustomLink} to="/manage-stock">Manage Stock</Nav.Link>
                                     <Nav.Link as={CustomLink} to="/blog">Blog</Nav.Link>
                                     <Nav.Link as={CustomLink} to="/about">About Us</Nav.Link>
                                 </Nav>
                                 <Nav>
                                     {
-                                        user &&
+                                        user?.uid
+                                        &&
                                         <>
                                             <Nav.Link as={CustomLink} to="/add-new-bikes">Add Bikes</Nav.Link>
                                             <Nav.Link as={CustomLink} to="/manage-stock">Manage Bikes</Nav.Link>
@@ -48,7 +49,7 @@ const Header = () => {
                                             style={{ color: "#382D72", marginRight: "20px", cursor: "grabbing" }}
                                         >
                                             <BiUser
-                                                className='my-auto'
+                                                className='my-auto ms-5'
                                                 style={{ height: "25px", width: "25px" }}
                                             ></BiUser>
                                             {
@@ -70,7 +71,7 @@ const Header = () => {
                                                 as={CustomLink}
                                                 onClick={handleLogout}
                                             >
-                                                Logout
+                                                Logout <FiLogOut />
                                             </Nav.Link>
                                             :
                                             <Nav.Link

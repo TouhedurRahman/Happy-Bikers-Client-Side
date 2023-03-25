@@ -9,6 +9,7 @@ import Login from './Components/LoginRegistration/Login';
 import Registration from './Components/LoginRegistration/Registration';
 import { Toaster } from 'react-hot-toast';
 import MyItems from './Components/MyItems/MyItems';
+import PrivateRoute from './Components/PrivateRoute/PrivateRoute';
 
 function App() {
   return (
@@ -16,14 +17,57 @@ function App() {
       <Header></Header>
 
       <Routes>
-        <Route path='/' element={<Home />}></Route>
-        <Route path='/home' element={<Home />}></Route>
-        <Route path='/updateItem/:updateId' element={<UpdateItem />}></Route>
-        <Route path='/add-new-bikes' element={<AddBikes />}></Route>
-        <Route path='/manage-stock' element={<ManageStock />}></Route>
-        <Route path='/my-items' element={<MyItems />}></Route>
-        <Route path='/login' element={<Login />}></Route>
-        <Route path='/register' element={<Registration />}></Route>
+        <Route
+          path='/'
+          element={<Home />}
+        ></Route>
+
+        <Route
+          path='/home'
+          element={<Home />}
+        ></Route>
+
+        <Route
+          path='/updateItem/:updateId'
+          element={<UpdateItem />}
+        ></Route>
+
+        <Route
+          path='/add-new-bikes'
+          element={
+            <PrivateRoute>
+              <AddBikes />
+            </PrivateRoute>
+          }
+        ></Route>
+
+        <Route
+          path='/manage-stock'
+          element={
+            <PrivateRoute>
+              <ManageStock />
+            </PrivateRoute>
+          }
+        ></Route>
+
+        <Route
+          path='/my-items'
+          element={
+            <PrivateRoute>
+              <MyItems />
+            </PrivateRoute>
+          }
+        ></Route>
+
+        <Route
+          path='/login'
+          element={<Login />}
+        ></Route>
+
+        <Route
+          path='/register'
+          element={<Registration />}
+        ></Route>
       </Routes>
 
       <Toaster />
