@@ -33,6 +33,14 @@ const Header = () => {
                                 </Nav>
                                 <Nav>
                                     {
+                                        user &&
+                                        <>
+                                            <Nav.Link as={CustomLink} to="/add-new-bikes">Add Bikes</Nav.Link>
+                                            <Nav.Link as={CustomLink} to="/manage-stock">Manage Bikes</Nav.Link>
+                                            <Nav.Link as={CustomLink} to="/my-items">My Items</Nav.Link>
+                                        </>
+                                    }
+                                    {
                                         user?.uid
                                         &&
                                         <span

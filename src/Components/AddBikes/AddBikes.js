@@ -23,7 +23,7 @@ const AddBikes = () => {
             .then(data => {
                 console.log(data);
                 if (data._id) {
-                    toast.success('Bikes added successfully!');
+                    toast.success('Bike added successful!');
                 } else {
                     toast.error('Somethig went wrong. Please try again.');
                 }
@@ -97,7 +97,7 @@ const AddBikes = () => {
                         className="form-control"
                         value={user ? user?.email : 'emailnai@gmail.com'}
                         readOnly
-                        {...register('userEmail', { required: true })}
+                        {...register('email', { required: true })}
                     />
                 </div>
                 <div className='text-center mt-3 mb-3'>
