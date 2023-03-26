@@ -1,5 +1,4 @@
 import { Route, Routes } from 'react-router-dom';
-import './App.css';
 import AddBikes from './Components/AddBikes/AddBikes';
 import Header from './Components/Header/Header';
 import Home from './Components/Home/Home';
@@ -10,10 +9,11 @@ import Registration from './Components/LoginRegistration/Registration';
 import { Toaster } from 'react-hot-toast';
 import MyItems from './Components/MyItems/MyItems';
 import PrivateRoute from './Components/PrivateRoute/PrivateRoute';
+import Footer from './Components/Footer/Footer';
 
 function App() {
   return (
-    <div className="App">
+    <div>
       <Header></Header>
 
       <Routes>
@@ -73,6 +73,8 @@ function App() {
           element={<Registration />}
         ></Route>
       </Routes>
+
+      <Footer></Footer>
 
       <Toaster />
     </div>
