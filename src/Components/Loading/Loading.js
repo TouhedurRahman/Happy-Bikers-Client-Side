@@ -3,7 +3,7 @@ import { Button, Spinner } from 'react-bootstrap';
 
 const Loading = () => {
     return (
-        <div className='text-center' style={{ marginTop: "250px" }}>
+        <div className='text-center' style={{ margin: "250px" }}>
             <Button variant="primary" disabled>
                 <Spinner
                     as="span"
