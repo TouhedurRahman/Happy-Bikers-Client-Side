@@ -22,7 +22,7 @@ const AboutUs = () => {
                 <Card className='text-center shadow'>
                     <div className='pt-3'>
                         <div className='mx-auto rounded-3'>
-                            <Card.Img style={{ height: "100px", width: "100px" }} variant="top" src="https://img.freepik.com/premium-vector/wall-clock-i-showing-nine-o-clock_78072-626.jpg?w=900" />
+                            <Card.Img style={{ height: "100px", width: "100px" }} variant="top" src="https://w7.pngwing.com/pngs/680/15/png-transparent-alarm-clock-movement-quartz-clock-digital-clock-clock-angle-time-ikea-thumbnail.png" />
                         </div>
                         <Card.Body>
                             <Card.Title>Opening Hours</Card.Title>
