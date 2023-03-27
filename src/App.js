@@ -10,6 +10,7 @@ import { Toaster } from 'react-hot-toast';
 import MyItems from './Components/MyItems/MyItems';
 import PrivateRoute from './Components/PrivateRoute/PrivateRoute';
 import Footer from './Components/Footer/Footer';
+import AboutUs from './AboutUs/AboutUs';
 
 function App() {
   return (
@@ -26,6 +27,12 @@ function App() {
           path='/home'
           element={<Home />}
         ></Route>
+
+        <Route
+          path='/about-us'
+          element={<AboutUs />}
+        ></Route>
+
 
         <Route
           path='/updateItem/:updateId'

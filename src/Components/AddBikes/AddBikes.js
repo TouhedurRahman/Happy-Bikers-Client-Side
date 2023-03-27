@@ -95,7 +95,7 @@ const AddBikes = () => {
                     <input
                         type="email"
                         className="form-control"
-                        value={user ? user?.email : 'emailnai@gmail.com'}
+                        value={user?.email}
                         readOnly
                         {...register('email', { required: true })}
                     />
