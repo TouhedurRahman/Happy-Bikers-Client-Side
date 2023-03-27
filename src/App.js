@@ -11,6 +11,7 @@ import MyItems from './Components/MyItems/MyItems';
 import PrivateRoute from './Components/PrivateRoute/PrivateRoute';
 import Footer from './Components/Footer/Footer';
 import AboutUs from './Components/AboutUs/AboutUs';
+import PageNotFound from './Components/PageNotFound/PageNotFound';
 
 function App() {
   return (
@@ -78,6 +79,12 @@ function App() {
           path='/register'
           element={<Registration />}
         ></Route>
+
+        <Route
+          path='*'
+          element={<PageNotFound />}
+        ></Route>
+
       </Routes>
 
       <Footer></Footer>
