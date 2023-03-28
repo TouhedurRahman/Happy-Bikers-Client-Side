@@ -12,6 +12,7 @@ import PrivateRoute from './Components/PrivateRoute/PrivateRoute';
 import Footer from './Components/Footer/Footer';
 import AboutUs from './Components/AboutUs/AboutUs';
 import PageNotFound from './Components/PageNotFound/PageNotFound';
+import Blog from './Components/Blog/Blog';
 
 function App() {
   return (
@@ -27,6 +28,11 @@ function App() {
         <Route
           path='/home'
           element={<Home />}
+        ></Route>
+
+        <Route
+          path='/blog'
+          element={<Blog />}
         ></Route>
 
         <Route
