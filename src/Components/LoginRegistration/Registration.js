@@ -1,5 +1,6 @@
 import React, { useContext, useState } from 'react';
 import { useForm } from 'react-hook-form';
+import { toast } from 'react-hot-toast';
 import { Link, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../AuthProvider/AuthProvider';
 import './Registration.css';
@@ -7,10 +8,9 @@ import SocialLogin from './SocialLogin';
 
 const Registration = () => {
     const { register, handleSubmit } = useForm();
+    const { createUser, updateUser } = useContext(AuthContext);
 
     const [passwordShown, setPasswordShown] = useState(false);
-
-    const { createUser, updateUser } = useContext(AuthContext);
 
     const navigate = useNavigate();
 
@@ -18,29 +18,41 @@ const Registration = () => {
         setPasswordShown(!passwordShown);
     };
 
+    const saveUser = (name, email) => {
+        const user = { name, email };
+
+        fetch('http://localhost:5000/users', {
+            method: 'POST',
+            headers: {
+                'content-type': 'application/json'
+            },
+            body: JSON.stringify(user)
+        })
+            .then(res => res.json())
+            .then(data => {
+                navigate('/');
+            })
+    }
+
     const handleRegistration = data => {
         if (data.userPassword === data.userConfirmPassword) {
-            console.log(data);
             createUser(data.userEmail, data.userPassword)
                 .then(result => {
-                    const user = result.user
-                    console.log(user);
-                    console.log('User created Successfull');
+                    const user = result.user;
+                    toast.success('User created Successfull');
                     const userInfo = {
                         displayName: data.userName
                     }
                     updateUser(userInfo)
                         .then(() => {
-                            navigate('/');
+                            saveUser(data.userName, data.userEmail);
                         })
-                        .then(error => {
-                            console.log(error);
-                        })
-                }).catch((error) => {
-                    console.log(error);
+                        .then(error => { })
+                }).catch(error => {
+                    toast.error("This email is already registered!");
                 });
         } else {
-            console.log("Password & Confirm Password must be same");
+            toast.error("Password & Confirm Password must be same");
         }
     }
 

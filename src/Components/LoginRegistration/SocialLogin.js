@@ -14,15 +14,29 @@ const SocialLogin = () => {
 
     const from = location.state?.from?.pathname || '/';
 
+    const saveUser = (name, email) => {
+        const user = { name, email };
+
+        fetch('http://localhost:5000/users', {
+            method: 'POST',
+            headers: {
+                'content-type': 'application/json'
+            },
+            body: JSON.stringify(user)
+        })
+            .then(res => res.json())
+            .then(data => { })
+    }
+
     const handleGoogleSignIn = () => {
         signInWithPopup(auth, provider)
             .then(result => {
                 const user = result.user;
-                // console.log(user);
+                saveUser(user.displayName, user.email);
                 navigate(from, { replace: true });
                 toast.success("Login Successful!");
             })
-            .catch(err => console.log(err));
+            .catch(error => { });
     }
 
     return (

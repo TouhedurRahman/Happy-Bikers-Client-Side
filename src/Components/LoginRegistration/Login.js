@@ -22,18 +22,14 @@ const Login = () => {
     };
 
     const handleLogin = data => {
-        console.log(data);
         login(data.userEmail, data.userPassword)
             .then((result) => {
-                // Signed in 
                 const user = result.user;
-                // ...
-                // console.log(user);
                 navigate(from, { replace: true });
                 toast.success("Login Successful!");
             })
             .catch((error) => {
-                console.log(error);
+                toast.error("Something went wrong! Please try again later.");
             });
     }
 
@@ -43,14 +39,13 @@ const Login = () => {
     }
 
     const handleResetPassword = () => {
-        // console.log(enterUserEmail);
         if (enterUserEmail) {
             resetPassword(enterUserEmail)
                 .then(() => {
                     toast.success("Email Sent!");
                 })
                 .then(err => {
-                    console.log(err);
+                    toast.error("Please Enter a valid Email");
                 })
         }
         else {
