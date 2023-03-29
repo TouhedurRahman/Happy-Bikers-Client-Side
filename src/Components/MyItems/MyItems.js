@@ -49,7 +49,21 @@ const MyItems = () => {
     return (
         <div>
             <div className='m-3'>
-                <h1 className='pt-3 text-center'>Bikes Added By me</h1>
+                <h1 className='pt-3 text-center'>
+                    Bikes Added by <br />
+                    <span style={
+                        {
+                            color: "red",
+                            fontSize: "20px"
+                        }
+                    }>
+                        <strong>
+                            <i>
+                                * {user.displayName} *
+                            </i>
+                        </strong>
+                    </span>
+                </h1>
                 <hr />
                 <Table responsive striped hover style={{ whiteSpace: "nowrap" }}>
                     <thead>
