@@ -1,13 +1,17 @@
 import { getAuth, GoogleAuthProvider, signInWithPopup } from 'firebase/auth';
-import React from 'react';
+import React, { useState } from 'react';
 import { toast } from 'react-hot-toast';
 import { useLocation, useNavigate } from 'react-router-dom';
 import app from '../../Firebase/firebase.config';
+import useToken from '../../hooks/useToken';
 
 const auth = getAuth(app);
 
 const SocialLogin = () => {
     const provider = new GoogleAuthProvider();
+    const [registerError, setRegisterError] = useState('');
+    const [emailToken, setEmailToken] = useState('');
+    const [token] = useToken(emailToken);
 
     const location = useLocation();
     const navigate = useNavigate();
@@ -27,16 +31,20 @@ const SocialLogin = () => {
             .then(res => res.json())
             .then(data => { })
     }
+    if (token) {
+        navigate(from, { replace: true });
+        toast.success("Login Successful!");
+    }
 
     const handleGoogleSignIn = () => {
+        setRegisterError('');
         signInWithPopup(auth, provider)
             .then(result => {
                 const user = result.user;
                 saveUser(user.displayName, user.email);
-                navigate(from, { replace: true });
-                toast.success("Login Successful!");
+                setEmailToken(user.email);
             })
-            .catch(error => { });
+            .catch(error => setRegisterError(error));
     }
 
     return (
