@@ -5,13 +5,17 @@ import SocialLogin from './SocialLogin';
 import { useForm } from 'react-hook-form';
 import { AuthContext } from '../AuthProvider/AuthProvider';
 import { toast } from 'react-hot-toast';
+import useToken from '../../hooks/useToken';
 
 const Login = () => {
     const { register, handleSubmit } = useForm();
     const { login, resetPassword } = useContext(AuthContext);
-
     const [passwordShown, setPasswordShown] = useState(false);
+    const [isLoading, setIsLoading] = useState(true);
+    const [loginError, setLoginError] = useState('');
     const [enterUserEmail, setEnterUserEmail] = useState('');
+    const [emailToken, setEmailToken] = useState('');
+    const [token] = useToken(emailToken);
 
     const location = useLocation();
     const navigate = useNavigate();
@@ -21,15 +25,22 @@ const Login = () => {
         setPasswordShown(!passwordShown);
     };
 
+    if (token) {
+        navigate(from, { replace: true });
+        toast.success("Login Successful!");
+    }
+
     const handleLogin = data => {
+        setIsLoading(false);
+        setLoginError('');
         login(data.userEmail, data.userPassword)
-            .then((result) => {
+            .then(result => {
                 const user = result.user;
-                navigate(from, { replace: true });
-                toast.success("Login Successful!");
+                setEmailToken(user.email);
             })
-            .catch((error) => {
+            .catch(error => {
                 toast.error("Something went wrong! Please try again later.");
+                setLoginError(error);
             });
     }
 

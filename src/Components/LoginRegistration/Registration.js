@@ -2,6 +2,7 @@ import React, { useContext, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { toast } from 'react-hot-toast';
 import { Link, useNavigate } from 'react-router-dom';
+import useToken from '../../hooks/useToken';
 import { AuthContext } from '../AuthProvider/AuthProvider';
 import './Registration.css';
 import SocialLogin from './SocialLogin';
@@ -9,14 +10,22 @@ import SocialLogin from './SocialLogin';
 const Registration = () => {
     const { register, handleSubmit } = useForm();
     const { createUser, updateUser } = useContext(AuthContext);
-
     const [passwordShown, setPasswordShown] = useState(false);
+    const [isLoading, setIsLoading] = useState(true);
+    const [registerError, setRegisterError] = useState('');
+    const [emailToken, setEmailToken] = useState('');
+    const [token] = useToken(emailToken);
 
     const navigate = useNavigate();
 
     const togglePassword = () => {
         setPasswordShown(!passwordShown);
     };
+
+    if (token) {
+        navigate('/');
+        toast.success('User created Successfull');
+    }
 
     const saveUser = (name, email) => {
         const user = { name, email };
@@ -30,16 +39,17 @@ const Registration = () => {
         })
             .then(res => res.json())
             .then(data => {
-                navigate('/');
+                setEmailToken(email);
             })
     }
 
     const handleRegistration = data => {
         if (data.userPassword === data.userConfirmPassword) {
+            setIsLoading(false);
+            setRegisterError('');
             createUser(data.userEmail, data.userPassword)
                 .then(result => {
                     const user = result.user;
-                    toast.success('User created Successfull');
                     const userInfo = {
                         displayName: data.userName
                     }
@@ -47,7 +57,7 @@ const Registration = () => {
                         .then(() => {
                             saveUser(data.userName, data.userEmail);
                         })
-                        .then(error => { })
+                        .then(error => setRegisterError(error))
                 }).catch(error => {
                     toast.error("This email is already registered!");
                 });
