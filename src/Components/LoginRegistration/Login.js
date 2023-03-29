@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import './Login.css';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import SocialLogin from './SocialLogin';
@@ -25,10 +25,12 @@ const Login = () => {
         setPasswordShown(!passwordShown);
     };
 
-    if (token) {
-        navigate(from, { replace: true });
-        toast.success("Login Successful!");
-    }
+    useEffect(() => {
+        if (token) {
+            navigate(from, { replace: true });
+        }
+    }, [token, navigate, from])
+
 
     const handleLogin = data => {
         setIsLoading(false);

@@ -1,5 +1,5 @@
 import { getAuth, GoogleAuthProvider, signInWithPopup } from 'firebase/auth';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { toast } from 'react-hot-toast';
 import { useLocation, useNavigate } from 'react-router-dom';
 import app from '../../Firebase/firebase.config';
@@ -31,10 +31,12 @@ const SocialLogin = () => {
             .then(res => res.json())
             .then(data => { })
     }
-    if (token) {
-        navigate(from, { replace: true });
-        toast.success("Login Successful!");
-    }
+
+    useEffect(() => {
+        if (token) {
+            navigate(from, { replace: true });
+        }
+    }, [token, navigate, from])
 
     const handleGoogleSignIn = () => {
         setRegisterError('');

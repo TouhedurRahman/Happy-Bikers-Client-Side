@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { toast } from "react-hot-toast";
 
 const useToken = email => {
     const [token, setToken] = useState('');
@@ -11,6 +12,7 @@ const useToken = email => {
                     if (data.accessToken) {
                         localStorage.setItem('accessToken', data.accessToken);
                         setToken(data.accessToken);
+                        toast.success("Login Successful!");
                     }
                 });
         }

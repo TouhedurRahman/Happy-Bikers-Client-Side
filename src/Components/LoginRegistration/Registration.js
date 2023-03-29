@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { toast } from 'react-hot-toast';
 import { Link, useNavigate } from 'react-router-dom';
@@ -22,10 +22,11 @@ const Registration = () => {
         setPasswordShown(!passwordShown);
     };
 
-    if (token) {
-        navigate('/');
-        toast.success('User created Successfull');
-    }
+    useEffect(() => {
+        if (token) {
+            navigate('/');
+        }
+    }, [token, navigate])
 
     const saveUser = (name, email) => {
         const user = { name, email };
