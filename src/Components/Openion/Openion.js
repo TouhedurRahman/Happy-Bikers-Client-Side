@@ -36,7 +36,7 @@ const Openion = () => {
     return (
         <div className='openion-section'>
             <div className='openion-img half-width'>
-                <img className='rounded-4' width="50%" src='https://img.onmanorama.com/content/dam/mm/en/news/business/images/2020/12/31/honda-cb-hornet.jpg' alt='Bike Loading...' />
+                <img className='rounded-4' width="50%" src='../../../images/Openion-pic/openion-section-pic.jpg' alt='Bike Loading...' />
             </div>
             <div className='openion-form half-width'>
                 <Form onSubmit={handleSubmit(handleOpenion)}>

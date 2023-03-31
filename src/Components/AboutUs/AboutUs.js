@@ -22,7 +22,7 @@ const AboutUs = () => {
                 <Card className='text-center shadow'>
                     <div className='pt-3'>
                         <div className='mx-auto rounded-3'>
-                            <Card.Img style={{ height: "100px", width: "100px" }} variant="top" src="https://w7.pngwing.com/pngs/680/15/png-transparent-alarm-clock-movement-quartz-clock-digital-clock-clock-angle-time-ikea-thumbnail.png" />
+                            <Card.Img style={{ height: "100px", width: "100px" }} variant="top" src="../../../images/contact-pic/clock.png" />
                         </div>
                         <Card.Body>
                             <Card.Title>Opening Hours</Card.Title>
@@ -36,7 +36,7 @@ const AboutUs = () => {
                 <Card className='text-center shadow'>
                     <div className='pt-3'>
                         <div className='mx-auto rounded-3'>
-                            <Card.Img style={{ height: "100px", width: "100px" }} variant="top" src="https://simg.nicepng.com/png/small/353-3535317_pro-locator-icon-location-vector-free.png" />
+                            <Card.Img style={{ height: "100px", width: "100px" }} variant="top" src="../../../images/contact-pic/location.png" />
                         </div>
                         <Card.Body>
                             <Card.Title>Location</Card.Title>
@@ -50,7 +50,7 @@ const AboutUs = () => {
                 <Card className='text-center shadow'>
                     <div className='pt-3'>
                         <div className='mx-auto rounded-3'>
-                            <Card.Img style={{ height: "100px", width: "100px" }} variant="top" src="https://www.nicepng.com/png/detail/166-1666916_mobile-call-logo-png.png" />
+                            <Card.Img style={{ height: "100px", width: "100px" }} variant="top" src="../../../images/contact-pic/contact.png" />
                         </div>
                         <Card.Body>
                             <Card.Title>Contact</Card.Title>

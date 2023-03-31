@@ -6,7 +6,7 @@ const Shops = () => {
     return (
         <div className='container shop-container text-center'>
             <Card className='border border-1 mx-auto m-1 card rounded-3' style={{ width: '22rem' }}>
-                <Card.Img variant="top" height="250px" width="250px" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTgXyCdxxKbAMJdkB8xigNq5JJy68xLYL857A&usqp=CAU" />
+                <Card.Img variant="top" height="250px" width="250px" src="../../../images/shop-pic/shop-01.jpg" />
                 <Card.Body>
                     <Card.Title>Head Office</Card.Title>
                     <Card.Text style={{ height: "170px", textAlign: "justify" }}>
@@ -19,7 +19,7 @@ const Shops = () => {
             </Card>
 
             <Card className='border border-1 mx-auto m-1 card rounded-3' style={{ width: '22rem' }}>
-                <Card.Img variant="top" height="250px" width="250px" src="https://cdn.shopify.com/s/files/1/0271/9493/files/workshop_1400x.jpg?v=1638463240" />
+                <Card.Img variant="top" height="250px" width="250px" src="../../../images/shop-pic/shop-02.jpg" />
                 <Card.Body>
                     <Card.Title>Bikes Showroom</Card.Title>
                     <Card.Text style={{ height: "170px", textAlign: "justify" }}>
@@ -32,7 +32,7 @@ const Shops = () => {
             </Card>
 
             <Card className='border border-1 mx-auto m-1 card rounded-3' style={{ width: '22rem' }}>
-                <Card.Img variant="top" height="250px" width="250px" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTqznJlbFOHF3XibfLrBGrcdAFAEPzaLlOMnA&usqp=CAU" />
+                <Card.Img variant="top" height="250px" width="250px" src="../../../images/shop-pic/shop-03.jpg" />
                 <Card.Body>
                     <Card.Title>Service Center</Card.Title>
                     <Card.Text style={{ height: "170px", textAlign: "justify" }}>
