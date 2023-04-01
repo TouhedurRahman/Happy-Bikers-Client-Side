@@ -6,8 +6,11 @@ import { Button, Table } from 'react-bootstrap';
 import { FaTrashAlt } from 'react-icons/fa';
 import { TfiWrite } from 'react-icons/tfi';
 import { toast } from 'react-hot-toast';
+import useTitle from '../../hooks/useTitle';
 
 const ManageStock = () => {
+    useTitle('Manage Bikes');
+
     const [manages, setManages] = useServices();
     const navigate = useNavigate();
 

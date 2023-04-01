@@ -1,8 +1,11 @@
 import React from 'react';
 import { Card, Container, Image } from 'react-bootstrap';
 import "./AboutUs.css";
+import useTitle from '../../hooks/useTitle';
 
 const AboutUs = () => {
+    useTitle('About Us');
+
     return (
         <Container>
             <div className='about-us m-3'>

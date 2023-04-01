@@ -5,8 +5,11 @@ import { FaTrashAlt } from 'react-icons/fa';
 import { TfiWrite } from 'react-icons/tfi';
 import { Link, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../AuthProvider/AuthProvider';
+import useTitle from '../../hooks/useTitle';
 
 const MyItems = () => {
+    useTitle('My Items');
+
     const { user } = useContext(AuthContext);
     const [manages, setManages] = useState([]);
     const navigate = useNavigate();

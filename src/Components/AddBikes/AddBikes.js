@@ -2,10 +2,14 @@ import React, { useContext } from 'react';
 import { useForm } from 'react-hook-form';
 import { toast } from 'react-hot-toast';
 import { AuthContext } from '../AuthProvider/AuthProvider';
+import useTitle from '../../hooks/useTitle';
 
 const AddBikes = () => {
+    useTitle('Add Bikes');
+
     const { user } = useContext(AuthContext);
     const { register, handleSubmit } = useForm();
+
     const addNewBikes = (data, event) => {
         const form = event.target;
         form.reset();

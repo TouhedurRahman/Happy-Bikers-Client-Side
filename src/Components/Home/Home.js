@@ -7,8 +7,10 @@ import Openion from '../Openion/Openion';
 import Service from '../Service/Service';
 import Shops from '../Shops/Shops';
 import "./Home.css";
+import useTitle from '../../hooks/useTitle';
 
 const Home = () => {
+    useTitle('Home');
     const [services] = useServices();
 
     return (

@@ -6,8 +6,11 @@ import useToken from '../../hooks/useToken';
 import { AuthContext } from '../AuthProvider/AuthProvider';
 import './Registration.css';
 import SocialLogin from './SocialLogin';
+import useTitle from '../../hooks/useTitle';
 
 const Registration = () => {
+    useTitle('Registration');
+
     const { register, formState: { errors }, handleSubmit } = useForm();
     const { createUser, updateUser } = useContext(AuthContext);
     const [passwordShown, setPasswordShown] = useState(false);

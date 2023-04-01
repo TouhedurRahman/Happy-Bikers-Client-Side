@@ -3,8 +3,11 @@ import './UpdateItem.css';
 import { Button, Card, Form } from 'react-bootstrap';
 import { Link, useParams } from 'react-router-dom';
 import { toast } from 'react-hot-toast';
+import useTitle from '../../hooks/useTitle';
 
 const UpdateItem = () => {
+    useTitle('Update Bikes');
+
     const { updateId } = useParams();
     const [product, setProduct] = useState({});
     const [count, setCount] = useState([]);

@@ -6,8 +6,11 @@ import { useForm } from 'react-hook-form';
 import { AuthContext } from '../AuthProvider/AuthProvider';
 import { toast } from 'react-hot-toast';
 import useToken from '../../hooks/useToken';
+import useTitle from '../../hooks/useTitle';
 
 const Login = () => {
+    useTitle('Login');
+
     const { register, formState: { errors }, handleSubmit } = useForm();
     const { login, resetPassword } = useContext(AuthContext);
     const [passwordShown, setPasswordShown] = useState(false);
