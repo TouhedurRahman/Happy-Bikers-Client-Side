@@ -8,7 +8,7 @@ import './Registration.css';
 import SocialLogin from './SocialLogin';
 
 const Registration = () => {
-    const { register, handleSubmit } = useForm();
+    const { register, formState: { errors }, handleSubmit } = useForm();
     const { createUser, updateUser } = useContext(AuthContext);
     const [passwordShown, setPasswordShown] = useState(false);
     const [isLoading, setIsLoading] = useState(true);
@@ -76,16 +76,22 @@ const Registration = () => {
                     <input type="text"
                         className="form-control py-3 rounded"
                         placeholder="Your Name"
-                        {...register('userName', { required: true })}
+                        {...register('userName', { required: "Name is required" })}
                     />
+                    {
+                        errors.userName && <p style={{ color: "red" }}>** {errors.userName?.message} **</p>
+                    }
                 </div>
                 <div className="mb-3">
                     <label htmlFor="exampleInputEmail" className="form-label">Email address</label>
                     <input type="email"
                         className="form-control py-3 rounded"
                         placeholder="user@gmail.com"
-                        {...register('userEmail', { required: true })}
+                        {...register('userEmail', { required: "Email Address is required" })}
                     />
+                    {
+                        errors.userEmail && <p style={{ color: "red" }}>** {errors.userEmail?.message} **</p>
+                    }
                 </div>
                 <div className="mb-3">
                     <label htmlFor="exampleInputPassword" className="form-label">Password</label>
@@ -93,8 +99,18 @@ const Registration = () => {
                         type={passwordShown ? "text" : "password"}
                         className="form-control py-3 rounded"
                         placeholder="●●●●●●●●"
-                        {...register('userPassword', { required: true })}
+                        {...register("userPassword", {
+                            required: "Password is required",
+                            minLength: { value: 8, message: "Password must be eight character or long." },
+                            pattern: {
+                                value: /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@@#\$%\^&\*])(?=.{8,})/,
+                                message: "Password must be Strong [At least one capital letter, one small latter, one special character and a numeric value is required]"
+                            }
+                        })}
                     />
+                    {
+                        errors.userPassword && <p style={{ color: "red" }}>** {errors.userPassword?.message} **</p>
+                    }
                 </div>
                 <div className="mb-3">
                     <label htmlFor="exampleInputPassword" className="form-label">Confirm Password</label>
@@ -102,8 +118,18 @@ const Registration = () => {
                         type={passwordShown ? "text" : "password"}
                         className="form-control py-3 rounded"
                         placeholder="●●●●●●●●"
-                        {...register('userConfirmPassword', { required: true })}
+                        {...register("userConfirmPassword", {
+                            required: "Password is required",
+                            minLength: { value: 8, message: "Password must be eight character or long." },
+                            pattern: {
+                                value: /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@@#\$%\^&\*])(?=.{8,})/,
+                                message: "Password must be Strong [At least one capital letter, one small latter, one special character and a numeric value is required]"
+                            }
+                        })}
                     />
+                    {
+                        errors.userConfirmPassword && <p style={{ color: "red" }}>** {errors.userConfirmPassword?.message} **</p>
+                    }
                 </div>
                 <div className="mb-3 form-check py-3">
                     <input

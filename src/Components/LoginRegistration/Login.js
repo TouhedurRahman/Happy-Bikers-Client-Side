@@ -8,7 +8,7 @@ import { toast } from 'react-hot-toast';
 import useToken from '../../hooks/useToken';
 
 const Login = () => {
-    const { register, handleSubmit } = useForm();
+    const { register, formState: { errors }, handleSubmit } = useForm();
     const { login, resetPassword } = useContext(AuthContext);
     const [passwordShown, setPasswordShown] = useState(false);
     const [isLoading, setIsLoading] = useState(true);
@@ -41,7 +41,7 @@ const Login = () => {
                 setEmailToken(user.email);
             })
             .catch(error => {
-                toast.error("Something went wrong! Please try again later.");
+                toast.error("Email or Password is not valid!");
                 setLoginError(error);
             });
     }
@@ -57,9 +57,7 @@ const Login = () => {
                 .then(() => {
                     toast.success("Email Sent!");
                 })
-                .then(err => {
-                    toast.error("Please Enter a valid Email");
-                })
+                .then(err => { })
         }
         else {
             toast.error("Please Enter a valid Email");
@@ -75,9 +73,12 @@ const Login = () => {
                     <input type="email"
                         className="form-control py-3 rounded"
                         placeholder="user@gmail.com"
-                        {...register('userEmail', { required: true })}
+                        {...register('userEmail', { required: "Email Address is required" })}
                         onBlur={handleEmailBlur}
                     />
+                    {
+                        errors.userEmail && <p style={{ color: "red" }}>** {errors.userEmail?.message} **</p>
+                    }
                 </div>
                 <div className="mb-3">
                     <label htmlFor="exampleInputPassword" className="form-label">Password</label>
@@ -85,8 +86,18 @@ const Login = () => {
                         type={passwordShown ? "text" : "password"}
                         className="form-control py-3 rounded"
                         placeholder="●●●●●●●●"
-                        {...register('userPassword', { required: true })}
+                        {...register("userPassword", {
+                            required: "Password is required",
+                            minLength: { value: 8, message: "Password must be eight character or long." },
+                            pattern: {
+                                value: /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@@#\$%\^&\*])(?=.{8,})/,
+                                message: "Password must be Strong [At least one capital letter, one small latter, one special character and a numeric value is required]"
+                            }
+                        })}
                     />
+                    {
+                        errors.userPassword && <p style={{ color: "red" }}>** {errors.userPassword?.message} **</p>
+                    }
                 </div>
                 <div className="mb-3 form-check py-3">
                     <input
