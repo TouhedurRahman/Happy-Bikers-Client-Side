@@ -10,7 +10,7 @@ const AddBikes = () => {
         const form = event.target;
         form.reset();
 
-        const url = `http://localhost:5000/bikes`;
+        const url = `https://happy-bikers-server-site.vercel.app/bikes`;
 
         fetch(url, {
             method: 'POST',

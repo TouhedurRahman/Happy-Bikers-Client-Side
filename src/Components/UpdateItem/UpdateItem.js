@@ -10,14 +10,14 @@ const UpdateItem = () => {
     const [count, setCount] = useState([]);
 
     useEffect(() => {
-        const url = `http://localhost:5000/updateItem/${updateId}`;
+        const url = `https://happy-bikers-server-site.vercel.app/updateItem/${updateId}`;
         fetch(url)
             .then(res => res.json())
             .then(data => setProduct(data));
     }, [updateId]);
 
     useEffect(() => {
-        const url = `http://localhost:5000/updateItem/${updateId}`;
+        const url = `https://happy-bikers-server-site.vercel.app/updateItem/${updateId}`;
         fetch(url)
             .then(res => res.json())
             .then(data => setCount(data.quantity));
@@ -37,7 +37,7 @@ const UpdateItem = () => {
 
             const updatedBikeInfo = { updatedQuantity };
 
-            const url = `http://localhost:5000/updateItem/${updateId}`;
+            const url = `https://happy-bikers-server-site.vercel.app/updateItem/${updateId}`;
             fetch(url, {
                 method: 'PUT',
                 headers: {
@@ -65,7 +65,7 @@ const UpdateItem = () => {
 
             const updatedBikeInfo = { updatedQuantity };
 
-            const url = `http://localhost:5000/updateItem/${updateId}`;
+            const url = `https://happy-bikers-server-site.vercel.app/updateItem/${updateId}`;
             fetch(url, {
                 method: 'PUT',
                 headers: {
@@ -95,7 +95,7 @@ const UpdateItem = () => {
 
             const updatedBikeInfo = { updatedQuantity };
 
-            const url = `http://localhost:5000/updateItem/${updateId}`;
+            const url = `https://happy-bikers-server-site.vercel.app/updateItem/${updateId}`;
             fetch(url, {
                 method: 'PUT',
                 headers: {

@@ -5,7 +5,7 @@ const useServices = () => {
     const [services, setServices] = useState([]);
 
     useEffect(() => {
-        const url = 'http://localhost:5000/bikes';
+        const url = 'https://happy-bikers-server-site.vercel.app/bikes';
         fetch(url)
             .then(res => res.json())
             .then(data => setServices(data));

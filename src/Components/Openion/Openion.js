@@ -14,7 +14,7 @@ const Openion = () => {
         const form = event.target;
         form.reset();
 
-        const url = `http://localhost:5000/openions`;
+        const url = `https://happy-bikers-server-site.vercel.app/openions`;
 
         fetch(url, {
             method: 'POST',

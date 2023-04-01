@@ -14,7 +14,7 @@ const ManageStock = () => {
     const deleteBtn = id => {
         const confirmDelation = window.confirm('Are you sure to delete?');
         if (confirmDelation) {
-            const url = `http://localhost:5000/deleteItem/${id}`;
+            const url = `https://happy-bikers-server-site.vercel.app/deleteItem/${id}`;
             fetch(url, {
                 method: 'DELETE',
             })
