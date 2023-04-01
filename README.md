@@ -15,5 +15,5 @@ Live site of [Happy Bikers](https://).
 - For Authentication - Google Firebase
 - Uses JWT (JSON Web Token)
 
-## Developed By Touhedur Rahman Khan
+### Developed By Touhedur Rahman Khan
 ## Thank you.
