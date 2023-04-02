@@ -25,7 +25,6 @@ const AddBikes = () => {
         })
             .then(res => res.json())
             .then(data => {
-                console.log(data);
                 if (data._id) {
                     toast.success('Bike added successful!');
                 } else {
