@@ -1,6 +1,5 @@
 import { getAuth, GoogleAuthProvider, signInWithPopup } from 'firebase/auth';
 import React, { useEffect, useState } from 'react';
-import { toast } from 'react-hot-toast';
 import { useLocation, useNavigate } from 'react-router-dom';
 import app from '../../Firebase/firebase.config';
 import useToken from '../../hooks/useToken';
@@ -58,7 +57,7 @@ const SocialLogin = () => {
             </div>
 
             <div>
-                <button className='btn btn-light btn-outline-success w-75 d-block mx-auto my-2 py-3 rounded-pill'>
+                <button onClick={handleGoogleSignIn} className='btn btn-light btn-outline-success w-75 d-block mx-auto my-2 py-3 rounded-pill'>
                     <img
                         style={{ width: '30px', borderRadius: '50%' }}
                         src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSK5q0FP74VV9wbfwP378_7kj7iDomHuKrxkXsxDdUT28V9dlVMNUe-EMzaLwaFhneeuZI&usqp=CAU"
@@ -67,7 +66,6 @@ const SocialLogin = () => {
                     <span
                         style={{ fontSize: "16px", fontWeight: "900" }}
                         className='px-2'
-                        onClick={handleGoogleSignIn}
                     >
                         Continue With GOOGLE
                     </span>
