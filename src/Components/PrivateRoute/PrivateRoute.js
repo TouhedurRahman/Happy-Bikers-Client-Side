@@ -3,6 +3,8 @@ import { toast } from 'react-hot-toast';
 import { Navigate, useLocation } from 'react-router-dom';
 import Loading from '../../Components/Loading/Loading';
 import { AuthContext } from '../AuthProvider/AuthProvider';
+import { AiOutlineReload } from "react-icons/ai";
+import { BiMailSend } from "react-icons/bi";
 import './PrivateRoute.css';
 
 const PrivateRoute = ({ children }) => {
@@ -30,7 +32,7 @@ const PrivateRoute = ({ children }) => {
                             marginTop: '20px'
                         }
                     }
-                        src="https://thumb.ac-illust.com/35/35797006a9f24f947367655c08755a3f_t.jpeg" alt="email-notification" />
+                        src="../../../images/email/email-notification.jpeg" alt="email-notification" />
                 </div>
                 <div>
                     <h1 className='text-success'>Please, Verify your Account</h1>
@@ -47,15 +49,30 @@ const PrivateRoute = ({ children }) => {
                             </span>
                             <br />
                             and verify your account.
-                            If you don't get any verification email, click the button bellow to get verification email again.
+                            If you don't get any verification email, click the button bellow to get verification email again or click reload button.
                         </p>
                     </div>
-                    <button onClick={
-                        async () => {
-                            await emailVerification();
-                            toast.success('Email sent!');
+                    <button
+                        onClick={
+                            async () => {
+                                await emailVerification();
+                                toast.success('Email sent!');
+                            }
                         }
-                    } className="resend-email-btn">Re-send Verification Email</button>
+                        className="btn-pr"
+                    >
+                        <BiMailSend className='font-bold me-2' />Re-send Verification Email
+                    </button>
+
+                    <button
+                        onClick={
+                            () => window.location.reload()
+                        }
+                        className='btn-pr ms-3'
+                    >
+                        <AiOutlineReload className='font-bold me-2' />Reload
+                    </button>
+
                     <div className="mx-auto mt-3 mb-5" style={{ maxWidth: '280px', }}>
                         <p>
                             If this email wasn't intended for you feel free to delete it, Thak you.
